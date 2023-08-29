@@ -10,7 +10,7 @@ class MOS_window:
     def __init__(self, file_path):
         self.file_path = file_path
         self.judger = Judgement()
-        self.judger.load(self,file_pth=file_path)
+        self.judger.load(file_pth='./dic.txt')
         self.dl = Dataloader(dir=file_path)
         if not self.dl.load(file_pth="./config.txt"):
             self.dl.mess_up()
@@ -96,8 +96,6 @@ class MOS_window:
         )
         self.btn5.grid(row=1, column=7)
         self.btn5.bind("<Button-1>", self.score5)
-        self.window.mainloop()
-
         self.last_btn = Button(
             self.window,
             activeforeground="black",
@@ -119,25 +117,25 @@ class MOS_window:
         )
         self.next_btn.grid(row=2, column=1)
         self.next_btn.bind("<Button-1>", self.next_audio)
-
+        self.window.mainloop()
     def play_snd(self,event):
         playsound(os.path.join(self.file_path,self.dl[self.nowpos]))
 
     def score1(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 1)
-        self.judger.save()
+        self.judger.save(file_pth='./dic.txt')
     def score2(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 2)
-        self.judger.save()
+        self.judger.save(file_pth='./dic.txt')
     def score3(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 3)
-        self.judger.save()
+        self.judger.save(file_pth='./dic.txt')
     def score4(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 4)
-        self.judger.save()
+        self.judger.save(file_pth='./dic.txt')
     def score5(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 5)
-        self.judger.save()
+        self.judger.save(file_pth='./dic.txt')
     def last_audio(self,event):
         if self.nowpos!=0:
             self.nowpos-=1

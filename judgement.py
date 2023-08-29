@@ -29,7 +29,7 @@ class Judgement:
 
     def load(self,*,file_pth):
         import os
-        if os.path.is_file(file_pth):
+        if os.path.isfile(file_pth):
             with open(file_pth) as readfile:
                 self.dic=eval(readfile.read())
                 return True
