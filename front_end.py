@@ -25,6 +25,7 @@ class MOS_window:
         self.window.title("Turkish worker simulator")
         self.window.geometry("500x200")
         self.window.resizable(width=False, height=False)
+        self.window.iconbitmap("./qwq.ico")
         self.window.bind('<space>',self.play_snd)
         self.window.bind('<Key 1>',self.score1)
         self.window.bind('<Key 2>',self.score2)
