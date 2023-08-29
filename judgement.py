@@ -26,13 +26,13 @@ class Judgement:
     
     def save(self,*,file_pth):
         with open(file_pth,'w') as outfile:
-            outfile.write(self.dic)
+            outfile.write(str(self.dic))
 
     def load(self,*,file_pth):
         import os
         if os.path.is_file(file_pth):
             with open(file_pth) as readfile:
-                self.dic=eval(readfile)
+                self.dic=eval(readfile.read())
                 return True
         else:
             return False
