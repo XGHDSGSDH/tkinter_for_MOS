@@ -47,10 +47,7 @@ class MOS_window:
         self.play_sound_btn.grid(row=0, column=0)
         self.play_sound_btn.bind("<Button-1>", self.play_snd)
 
-        s = "目前是第"+str(self.nowpos+1)+"条语音请评分"
-        #看是否有分
-        self.now_label=Label(self.window,text=s)
-        self.now_label.grid(row=0, column=1)
+        self.label_flush()
 
         self.btn1 = Button(
             self.window,
@@ -136,27 +133,28 @@ class MOS_window:
     def score1(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 1)
         self.judger.save(file_pth='./dic.txt')
+        self.label_flush()
     def score2(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 2)
         self.judger.save(file_pth='./dic.txt')
+        self.label_flush()
     def score3(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 3)
         self.judger.save(file_pth='./dic.txt')
+        self.label_flush()
     def score4(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 4)
         self.judger.save(file_pth='./dic.txt')
+        self.label_flush()
     def score5(self,event):
         self.judger.change(key = self.dl[self.nowpos], value = 5)
         self.judger.save(file_pth='./dic.txt')
+        self.label_flush()
     def last_audio(self,event):
         if self.nowpos!=0:
             self.nowpos-=1
-        s = "目前是第"+str(self.nowpos+1)+"条语音请评分"
-        if self.judger[self.dl[self.nowpos]]:
-            s+=" 目前分数是"+str(self.judger[self.dl[self.nowpos]])
-        self.now_label=Label(self.window,text=s)
-        self.now_label.grid(row=0, column=1)
-        self.window.update()
+        self.label_flush()
+        
 
     def next_audio(self,event):
         if self.nowpos!=len(self.dl):
@@ -164,11 +162,15 @@ class MOS_window:
         else :
             self.end = Label(self.window,text="全都评测完了,欢迎下次再来qwq")
             self.end.grid(row=0,column=2)
+        self.label_flush()
+    
+    def label_flush(self):
+        self.now_label.grid_forget()
         s = "目前是第"+str(self.nowpos+1)+"条语音请评分"
         if self.judger[self.dl[self.nowpos]]:
             s+=" 目前分数是"+str(self.judger[self.dl[self.nowpos]])
         self.now_label=Label(self.window,text=s)
         self.now_label.grid(row=0, column=1)
-        self.window.update()
+        
 
     
