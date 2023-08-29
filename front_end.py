@@ -35,7 +35,7 @@ class MOS_window:
         self.play_sound_btn.grid(row=0, column=0)
         self.play_sound_btn.bind("<Button-1>", self.play_snd)
 
-        s = "请评分"
+        s = "目前是第"+str(self.nowpos)+"条语音请评分"
         #看是否有分
         self.now_label=Label(self.window,text=s)
         self.now_label.grid(row=0, column=1)
@@ -98,3 +98,21 @@ class MOS_window:
 
     def play_snd(self):
         playsound(os.path.join(self.file_path,self.dl[self.nowpos]))
+
+    def score1(self):
+        pass
+    def score2(self):
+        pass
+    def score3(self):
+        pass
+    def score4(self):
+        pass
+    def score5(self):
+        pass
+    def last_audio(self):
+        if self.nowpos!=0:
+            self.nowpos-=1
+        s = "目前是第"+str(self.nowpos)+"条语音请评分"
+        #看是否有分
+        self.now_label=Label(self.window,text=s)
+        self.now_label.grid(row=0, column=1)
