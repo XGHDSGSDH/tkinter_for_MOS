@@ -96,20 +96,20 @@ class MOS_window:
         self.btn5.bind("<Button-1>", self.score5)
         self.window.mainloop()
 
-    def play_snd(self):
+    def play_snd(self,event):
         playsound(os.path.join(self.file_path,self.dl[self.nowpos]))
 
-    def score1(self):
+    def score1(self,event):
         pass
-    def score2(self):
+    def score2(self,event):
         pass
-    def score3(self):
+    def score3(self,event):
         pass
-    def score4(self):
+    def score4(self,event):
         pass
-    def score5(self):
+    def score5(self,event):
         pass
-    def last_audio(self):
+    def last_audio(self,event):
         if self.nowpos!=0:
             self.nowpos-=1
         s = "目前是第"+str(self.nowpos)+"条语音请评分"
