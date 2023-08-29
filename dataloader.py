@@ -9,6 +9,7 @@ class Dataloader:
     def mess_up(self):
         import random
         self.list = random.shuffle(self.list)
+        return self.list
     
     def save(self,*,file_pth):
         with open(file_pth,'w') as outfile:
