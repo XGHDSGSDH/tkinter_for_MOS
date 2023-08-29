@@ -25,6 +25,16 @@ class MOS_window:
         self.window.title("Turkish worker simulator")
         self.window.state("zoomed")
         self.window.resizable(width=400, height=200)
+        self.window.bind('<Key 1>',self.score1)
+        self.window.bind('<Key 2>',self.score2)
+        self.window.bind('<Key 3>',self.score3)
+        self.window.bind('<Key 4>',self.score4)
+        self.window.bind('<Key 5>',self.score5)
+        self.window.bind('<Up>',self.last_audio)
+        self.window.bind('<Left>',self.last_audio)
+        self.window.bind('<Right>',self.next_audio)
+        self.window.bind('<Down>',self.next_audio)
+
         #播放按钮
         self.play_sound_btn = Button(
             self.window,
@@ -37,7 +47,7 @@ class MOS_window:
         self.play_sound_btn.grid(row=0, column=0)
         self.play_sound_btn.bind("<Button-1>", self.play_snd)
 
-        s = "目前是第"+str(self.nowpos)+"条语音请评分"
+        s = "目前是第"+str(self.nowpos+1)+"条语音请评分"
         #看是否有分
         self.now_label=Label(self.window,text=s)
         self.now_label.grid(row=0, column=1)
@@ -118,6 +128,8 @@ class MOS_window:
         self.next_btn.grid(row=2, column=1)
         self.next_btn.bind("<Button-1>", self.next_audio)
         self.window.mainloop()
+    
+    
     def play_snd(self,event):
         playsound(os.path.join(self.file_path,self.dl[self.nowpos]))
 
@@ -144,6 +156,7 @@ class MOS_window:
             s+=" 目前分数是"+str(self.judger[self.dl[self.nowpos]])
         self.now_label=Label(self.window,text=s)
         self.now_label.grid(row=0, column=1)
+        self.window.update()
 
     def next_audio(self,event):
         if self.nowpos!=len(self.dl):
@@ -156,3 +169,6 @@ class MOS_window:
             s+=" 目前分数是"+str(self.judger[self.dl[self.nowpos]])
         self.now_label=Label(self.window,text=s)
         self.now_label.grid(row=0, column=1)
+        self.window.update()
+
+    
