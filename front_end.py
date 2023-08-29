@@ -23,8 +23,9 @@ class MOS_window:
     def draw_my_window(self):
         self.window = Tk()
         self.window.title("Turkish worker simulator")
-        self.window.state("zoomed")
-        self.window.resizable(width=400, height=200)
+        self.window.geometry("500x200")
+        self.window.resizable(width=False, height=False)
+        self.window.bind('<space>',self.play_snd)
         self.window.bind('<Key 1>',self.score1)
         self.window.bind('<Key 2>',self.score2)
         self.window.bind('<Key 3>',self.score3)
@@ -34,6 +35,11 @@ class MOS_window:
         self.window.bind('<Left>',self.last_audio)
         self.window.bind('<Right>',self.next_audio)
         self.window.bind('<Down>',self.next_audio)
+        s = "目前是第"+str(self.nowpos+1)+"条语音请评分"
+        if self.judger[self.dl[self.nowpos]]:
+            s+=" 目前分数是"+str(self.judger[self.dl[self.nowpos]])
+        self.now_label=Label(self.window,text=s)
+        self.now_label.grid(row=0, column=1)
 
         #播放按钮
         self.play_sound_btn = Button(
