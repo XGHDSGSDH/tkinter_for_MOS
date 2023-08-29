@@ -1,7 +1,6 @@
 class Judgement:
-    def __init__(self,*,file_pth):
+    def __init__(self):
         self.dic={}
-        self.load(self,file_pth=file_pth)
 
     def add(self,*,key,value):
         if key in self.dic.keys():
